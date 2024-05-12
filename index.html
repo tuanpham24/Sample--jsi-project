@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      .dropdown {
+        position: relative;
+      }
+      .menu {
+        display: none;
+        opacity: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translateY(100%);
+        transition: all ease 1s;
+      }
+
+      .active {
+        display: block;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container p-8 mx-auto">
+      <button id="logout-btn">Logout</button>
+
+      <div class="dropdown">
+        <button class="drd-btn">Dropdown</button>
+        <ul class="menu">
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="current-user-email"></h3>
+
+    <!-- Link Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.0/firebase-auth-compat.min.js"
+      integrity="sha512-u4HjRw6xinzQGDRP1QwHIc/SZRdACWhJ3lFZW6xBD9/XBQFXbCYQMSlCJUa2KyZ27Nef6gyY3TO0ToCoAtqDCg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Firebase configs -->
+    <script src="./src/js/firebase-config.js"></script>
+
+    <!-- Feature code -->
+
+    <script src="./src/js/logout.js"></script>
+
+    <script>
+      const user = firebase.auth().currentUser;
+      const currentUserEmail = document.querySelector('.current-user-email');
+
+      // update data 
+      db.collection("users").doc(doc.id).update({foo: "bar"});
+
+      console.log(user);
+
+      // Xử lý dropdown
+      const drdBtn = document.querySelector('.drd-btn');
+      const menu = document.querySelector('.menu');
+
+      drdBtn.addEventListener('click', function () {
+        menu.classList.toggle("active");
+      })
+
+
+      // Lấy ra thông tin user để điền vào header
+      let currentEmail = JSON.parse(localStorage.getItem('current_user_data'));
+
+      if (currentEmail) {
+        currentUserEmail.innerHTML = currentEmail;
+      }
+    </script>
+  </body>
+</html>

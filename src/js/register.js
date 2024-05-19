@@ -36,19 +36,6 @@ const handleRegiser = (e) => {
       let user = userCredential.user;
 
       alert("Signup successfully!");
-      // Update the user's display name
-      user.updateProfile({
-        displayName: fullname,
-      })
-      .then(() => {
-        // Display name updated successfully
-        console.log("Display name updated successfully:", user.displayName);
-        alert();
-      })
-      .catch(error => {
-        console.error("Error updating display name:", error.message);
-      })
-
       console.log(user);
 
       db.collection("users")
@@ -76,19 +63,14 @@ const handleRegiser = (e) => {
     });
 };
 
-// registerForm.addEventListener("submit", (e) => {
-//   handleRegiser(e);
-// });
-
-
 // Kiểm tra trạng thái đăng nhập
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // Nếu người dùng đã đăng nhập, chuyển hướng đến trang khác
-    window.location.replace("index.html");
-  } else {
+  if (!user) {
     // Người dùng chưa đăng nhập, tiếp tục xử lý đăng ký
     registerForm.addEventListener("submit", handleRegister);
+  } else {
+    // Nếu người dùng đã đăng nhập, chuyển hướng đến trang khác
+    window.location.replace("index.html");
   }
 });
 

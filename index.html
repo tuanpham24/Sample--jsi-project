@@ -5,47 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-      .dropdown {
-        position: relative;
-      }
-      .menu {
-        display: none;
-        opacity: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transform: translateY(100%);
-        transition: all ease 1s;
-      }
-
-      .active {
-        display: block;
-        opacity: 1;
-      }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./src/css/index.css">
   </head>
   <body>
-    <div class="container p-8 mx-auto">
-      <button id="logout-btn">Logout</button>
 
-      <div class="dropdown">
-        <button class="drd-btn">Dropdown</button>
-        <ul class="menu">
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-        </ul>
+    <header class="shadow-md py-4">
+      <div class="container px-8 mx-auto">
+        <div class="flex">
+          <div class="logo">
+            <h3>Logo</h3>
+            <!-- img -->
+          </div>
+  
+          <nav>
+            <ul class="flex justify-center">
+              <li>
+                <a href="#">posts</a>
+              </li>
+              <li>
+                <a href="#">blog</a>
+              </li>
+              <li>
+                <a href="#">contact</a>
+              </li>
+              <li>
+                <a href="#">Posts</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="user-actions flex justify-end">
+            <div>
+              <button class="drd-btn flex items-center">
+                <h3 class="current-user px-2"></h3>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="dropdown">
+                <ul class="menu shadow-md w-full px-2 py-4">
+                  <li>
+                    <button id="logout-btn">Logout</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <h3 class="current-user-email"></h3>
+    <main>
+      <div class="container px-8 mx-auto">
+        <h1 class="text-[20px] mt-8 text-center">Thêm bài viết: </h1>
+        <form id="post-form">
+          <div class="form-group">
+            <input class="w-full" type="text" id="post-title" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <input class="w-full" type="text" id="post-image" placeholder="Image path">
+          </div>
+          <div class="form-group">
+            <textarea class="w-full" id="post-content" placeholder="Content"></textarea>
+          </div>
+          <button type="submit">Add Post</button>
+        </form>
+        
+        <div id="posts-container" class="flex"></div>
+
+        <div class="overlay" onclick="closePopup()"></div>
+        <div class="popup">
+          <h2>Edit Post</h2>
+          <form id="edit-form">
+            <input type="text" id="edit-title" placeholder="Title" required>
+            <textarea id="edit-content" placeholder="Content" required></textarea>
+            <input type="text" id="edit-image" placeholder="Image URL" required>
+            <button type="submit">Save Changes</button>
+            <button type="button" onclick="closePopup()">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </main>
 
     <!-- Link Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
@@ -61,33 +100,15 @@
     <script src="./src/js/firebase-config.js"></script>
 
     <!-- Feature code -->
-
+    <script src="./src/js/layout.js"></script>
     <script src="./src/js/logout.js"></script>
+    <script src="./src/js/main.js"></script>
 
     <script>
-      const user = firebase.auth().currentUser;
-      const currentUserEmail = document.querySelector('.current-user-email');
 
-      // update data 
-      db.collection("users").doc(doc.id).update({foo: "bar"});
-
-      console.log(user);
-
-      // Xử lý dropdown
-      const drdBtn = document.querySelector('.drd-btn');
-      const menu = document.querySelector('.menu');
-
-      drdBtn.addEventListener('click', function () {
-        menu.classList.toggle("active");
-      })
-
-
-      // Lấy ra thông tin user để điền vào header
-      let currentEmail = JSON.parse(localStorage.getItem('current_user_data'));
-
-      if (currentEmail) {
-        currentUserEmail.innerHTML = currentEmail;
-      }
+    </script>
+    <script>
+     
     </script>
   </body>
 </html>

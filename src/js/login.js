@@ -11,21 +11,18 @@ const handleLogin = (e) => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
-
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in
-    var user = userCredential.user;
+    let user = userCredential.user;
 
-    console.log(user);
     // Lưu thông tin user vào Localtorage
-
-    localStorage.setItem('current_user_data', JSON.stringify(user.email))
-
+    let userSaveLS = {
+      displayName: user.displayName,
+      email: user.email,
+    }
+    localStorage.setItem('current_user_data', JSON.stringify(userSaveLS))
     alert('Login successfully!');
-
-
-    // window.location.pathname = '/index.html'
   })
   .catch((error) => {
     let errorCode = error.code;
@@ -34,14 +31,15 @@ const handleLogin = (e) => {
   });
 }
 
+loginForm.addEventListener("submit", handleLogin);
 
 // Kiểm tra trạng thái đăng nhập
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // Nếu người dùng đã đăng nhập, chuyển hướng đến trang khác
-    window.location.replace("index.html");
-  } else {
+  if (!user) {
     // Người dùng chưa đăng nhập, tiếp tục xử lý đăng nhập
     loginForm.addEventListener("submit", handleLogin);
+  } else {
+    // Nếu người dùng đã đăng nhập, chuyển hướng đến trang home
+    window.location.replace("index.html");
   }
 });

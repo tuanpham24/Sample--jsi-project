@@ -1,0 +1,114 @@
+
+header {
+  z-index: 98;
+}
+header .logo {
+  width: 10%;
+}
+
+header nav {
+  width: 60%;
+}
+
+header .user-actions {
+  width: 30%;
+}
+
+nav li a {
+  text-transform: capitalize;
+  padding: 0px 8px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  bottom: -8px;
+  z-index: 99;
+}
+.menu {
+  display: none;
+  background-color: pink;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: all ease 1s;
+}
+
+.active {
+  display: block;
+  opacity: 1;
+}
+
+.shadow-md {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+#logout-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+#post-form {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+#post-form input, textarea{
+  border-bottom: 1px solid #9f9f9f;
+  padding: 2px 4px;
+  margin-top: 8px;
+}
+
+#post-form button {
+  background-color: blueviolet;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.post {
+  width: 33%;
+  padding: 15px;
+}
+
+.post img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+
+/* pupuo */
+.popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 20px;
+  background: #fff;
+  z-index: 1000;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.show {
+  display: block;
+}

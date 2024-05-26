@@ -58,13 +58,16 @@
       <div class="container px-8 mx-auto">
         <h1 class="text-[20px] mt-8 text-center">Thêm bài viết: </h1>
         <form id="post-form">
-          <div class="form-group">
-            <input class="w-full" type="text" id="post-title" placeholder="Title">
+          <div class="form-group mt-[20px]">
+            <label for="">Title</label>
+            <input class="w-full" type="text" id="post-title">
           </div>
-          <div class="form-group">
-            <input class="w-full" type="text" id="post-image" placeholder="Image path">
+          <div class="form-group mt-[20px]">
+            <label for="">Image Path</label>
+            <input class="w-full" type="text" id="post-image">
           </div>
-          <div class="form-group">
+          <div class="form-group mt-[20px]">
+            <label for="">Content</label>
             <textarea class="w-full" id="post-content" placeholder="Content"></textarea>
           </div>
           <button type="submit">Add Post</button>
@@ -73,14 +76,25 @@
         <div id="posts-container" class="flex"></div>
 
         <div class="overlay" onclick="closePopup()"></div>
-        <div class="popup">
+        <div class="popup w-[800px]">
           <h2>Edit Post</h2>
           <form id="edit-form">
-            <input type="text" id="edit-title" placeholder="Title" required>
-            <textarea id="edit-content" placeholder="Content" required></textarea>
-            <input type="text" id="edit-image" placeholder="Image URL" required>
-            <button type="submit">Save Changes</button>
-            <button type="button" onclick="closePopup()">Cancel</button>
+            <div class="form-group mt-[20px]">
+              <label for="">Title</label>
+              <input class="w-full border-2 border-[blue]" type="text" id="edit-title" required>
+            </div>
+            <div class="form-group mt-[20px]">
+              <label for="">Content</label>
+              <textarea class="w-full border-2 border-[blue]" id="edit-content" required></textarea>
+            </div>
+            <div class="form-group mt-[20px]">
+              <label for="">Image Path</label>
+              <input class="w-full border-2 border-[blue]" type="text" id="edit-image" required>
+            </div>
+            <div class="mt-[20px]">
+              <button type="submit" class="bg-[green] rounded-md p-2">Save Changes</button>
+            <button type="button" class="bg-[grey] rounded-md p-2" onclick="closePopup()">Cancel</button>
+            </div>
           </form>
         </div>
       </div>
